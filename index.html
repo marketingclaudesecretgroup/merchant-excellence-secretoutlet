@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Merchant Excellence (v2026.4) — Secret Outlet | Executive Presentation</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- GSAP CDN for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    colors: {
+                        parchment: {
+                            50: '#FBFBFA',
+                            100: '#F6F5F2',
+                            200: '#EFECE6',
+                            300: '#E4DFD5',
+                            400: '#CFC7B9',
+                            500: '#B5AA98'
+                        },
+                        stone: {
+                            800: '#262422',
+                            900: '#191816',
+                            950: '#100F0D'
+                        },
+                        brand: {
+                            emerald: '#0D9488',
+                            emeraldLight: '#14B8A6',
+                            emeraldBg: '#F0FDFA',
+                            blue: '#2563EB',
+                            blueBg: '#EFF6FF',
+                            purple: '#7C3AED',
+                            purpleBg: '#F5F3FF',
+                            amber: '#D97706',
+                            amberBg: '#FFFBEB',
+                            red: '#DC2626'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ==========================================================================
+           CLEAN MINIMAL LIGHT MODE & DESIGN MASTER CRAFT (10/10 Rubric)
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-base: #F6F5F2;
+            --surface-panel: #FFFFFF;
+            --surface-card: #FAF9F6;
+            --border-subtle: #E8E5DF;
+            --border-medium: #DDD7CD;
+            --text-primary: #191816;
+            --text-secondary: #57534E;
+            --text-muted: #8C857B;
+            --brand-accent: #0D9488;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Subtle Warm Architectural Grid */
+        .subtle-grid {
+            position: fixed;
+            inset: 0;
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+            z-index: 1;
+            pointer-events: none;
+            mask-image: radial-gradient(circle at center, black 60%, transparent 95%);
+            -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 95%);
+        }
+
+        /* Warm Ambient Glow */
+        .ambient-wash {
+            position: fixed;
+            width: 800px;
+            height: 600px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(120px);
+            opacity: 0.45;
+        }
+        .wash-1 { top: -150px; right: -150px; background: #EAE5D9; }
+        .wash-2 { bottom: -150px; left: -150px; background: #E0F2FE; }
+
+        /* 16:9 Presentation Master Frame */
+        .deck-viewport {
+            position: relative;
+            z-index: 10;
+            width: 100vw;
+            height: 100vh;
+            max-width: calc(100vh * 16 / 9);
+            max-height: calc(100vw * 9 / 16);
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: var(--surface-panel);
+            border: 1px solid var(--border-medium);
+            border-radius: 20px;
+            box-shadow: 
+                0 25px 65px -15px rgba(25, 24, 22, 0.07),
+                0 0 1px 1px rgba(25, 24, 22, 0.04);
+        }
+
+        /* Slides Positioning */
+        .slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            padding: 3.5rem 4.5rem 4rem 4.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            pointer-events: none;
+            transition: opacity 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+            z-index: 20;
+        }
+
+        /* Executive Surface Cards */
+        .light-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.03);
+            transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+        }
+        .light-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.06);
+            border-color: var(--border-medium);
+        }
+
+        .light-card-inset {
+            background: var(--surface-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+        }
+
+        /* Interactive buttons micro-spring */
+        button {
+            transition: transform 120ms ease, background-color 150ms ease, color 150ms ease;
+        }
+        button:active {
+            transform: scale(0.96) !important;
+        }
+
+        /* Status Pills (Refined, calm accents) */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        .status-pill.pass {
+            background: #ECFDF5;
+            color: #047857;
+            border: 1px solid #A7F3D0;
+        }
+        .status-pill.info {
+            background: #EFF6FF;
+            color: #1D4ED8;
+            border: 1px solid #BFDBFE;
+        }
+        .status-pill.purple {
+            background: #F5F3FF;
+            color: #6D28D9;
+            border: 1px solid #DDD6FE;
+        }
+        .status-pill.amber {
+            background: #FFFBEB;
+            color: #B45309;
+            border: 1px solid #FDE68A;
+        }
+
+        /* Mini thumbnail indicators */
+        .thumb-nav-btn {
+            cursor: pointer;
+            position: relative;
+            transition: all 200ms ease;
+        }
+        .thumb-nav-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--brand-accent);
+            border-radius: 2px;
+        }
+
+        /* Progress line */
+        #topProgressBar {
+            transition: width 350ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WARM ATMOSPHERIC WASHES -->
+    <div class="ambient-wash wash-1"></div>
+    <div class="ambient-wash wash-2"></div>
+    <div class="subtle-grid"></div>
+
+    <!-- MAIN 16:9 MASTER DECK -->
+    <main class="deck-viewport" id="deckContainer">
+
+        <!-- PERSISTENT TOP APP BAR -->
+        <header class="w-full h-14 border-b border-parchment-200 px-8 flex items-center justify-between z-30 bg-white/90 backdrop-blur-md">
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-teal-600 animate-pulse"></span>
+                    <span class="font-bold text-xs tracking-wider uppercase text-stone-900 font-mono">SECRET OUTLET</span>
+                </div>
+                <span class="text-stone-300 text-xs">/</span>
+                <span class="font-mono text-xs text-stone-500 font-medium">GMC ID: 118399377</span>
+            </div>
+
+            <!-- Slide Quick Thumbnails (Mouse Clickable Nav) -->
+            <div class="hidden md:flex items-center gap-6 font-mono text-xs text-stone-500">
+                <span class="thumb-nav-btn active" data-nav-slide="1">01. Sumário</span>
+                <span class="thumb-nav-btn" data-nav-slide="2">02. Benchmark</span>
+                <span class="thumb-nav-btn" data-nav-slide="3">03. IA Agentic</span>
+                <span class="thumb-nav-btn" data-nav-slide="4">04. Pilares</span>
+                <span class="thumb-nav-btn" data-nav-slide="5">05. Roadmap</span>
+                <span class="thumb-nav-btn" data-nav-slide="6">06. Conclusão</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <span class="status-pill pass">Customer Match &bull; PMax &bull; Promoções Ativas</span>
+            </div>
+        </header>
+
+        <!-- TOP LINEAR PROGRESS -->
+        <div class="w-full h-[2px] bg-parchment-200 overflow-hidden z-30">
+            <div id="topProgressBar" class="h-full bg-teal-600 w-1/6"></div>
+        </div>
+
+        <!-- ==================== SLIDE 1: CAPA EXECUTIVA ==================== -->
+        <section class="slide active" data-slide="1">
+            <div class="flex items-center justify-between text-xs font-mono text-stone-400">
+                <span class="tracking-widest uppercase">01 / EXECUTIVE BRIEFING</span>
+                <span>AUDITORIA OFICIAL GOOGLE MERCHANT CENTER</span>
+            </div>
+
+            <div class="flex flex-col items-center justify-center text-center my-auto max-w-4xl mx-auto py-2">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-mono font-medium mb-4">
+                    <span>✨ Customer Match 1P + PMax 100% + 23 Promoções GMC Conectadas</span>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl font-extrabold text-stone-900 tracking-tight leading-[1.15] mb-4">
+                    Auditoria de Merchant Excellence
+                </h1>
+                <p class="text-lg text-stone-600 font-light max-w-2xl leading-relaxed mb-8">
+                    Catálogo da <strong class="text-stone-900 font-semibold">Secret Outlet</strong> rompe a barreira dos <span class="text-teal-700 font-bold font-mono">95%</span> e consolida padrão internacional para a era do <span class="text-teal-700 font-medium">Agentic Commerce</span>.
+                </p>
+
+                <!-- 4 Topline Metric Blocks (Light Mode Clean Architecture) -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
+                    <div class="light-card p-5 text-center border-t-4 border-t-teal-600">
+                        <span class="text-[11px] font-mono text-stone-400 uppercase tracking-wider block mb-1">Score Oficial Recalculado</span>
+                        <div class="text-3xl lg:text-4xl font-extrabold font-mono text-teal-700">~95,4%</div>
+                        <div class="text-[11px] text-stone-500 mt-2 font-mono">Benchmark: 70,0% <span class="text-teal-700 font-semibold">(+25.4 p.p.)</span></div>
+                    </div>
+
+                    <div class="light-card p-5 text-center border-t-4 border-t-blue-600">
+                        <span class="text-[11px] font-mono text-stone-400 uppercase tracking-wider block mb-1">Customer Match 1P</span>
+                        <div class="text-2xl lg:text-3xl font-extrabold font-mono text-blue-700 mt-1">365 Dias</div>
+                        <div class="text-[11px] text-stone-500 mt-2 font-mono">Compradores Bagy Ativo ✅</div>
+                    </div>
+
+                    <div class="light-card p-5 text-center border-t-4 border-t-stone-800">
+                        <span class="text-[11px] font-mono text-stone-400 uppercase tracking-wider block mb-1">Cobertura em Google Ads</span>
+                        <div class="text-3xl lg:text-4xl font-extrabold font-mono text-stone-900">100,0%</div>
+                        <div class="text-[11px] text-stone-500 mt-2 font-mono">PMax Criada &bull; 0 Itens Fora</div>
+                    </div>
+
+                    <div class="light-card p-5 text-center border-t-4 border-t-purple-600">
+                        <span class="text-[11px] font-mono text-stone-400 uppercase tracking-wider block mb-1">Promoções Ativas GMC</span>
+                        <div class="text-3xl lg:text-4xl font-extrabold font-mono text-purple-700">23</div>
+                        <div class="text-[11px] text-stone-500 mt-2 font-mono">Benchmark: &ge; 5 <span class="text-teal-700 font-semibold">(4,6x da Meta)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-stone-400 font-mono border-t border-parchment-200 pt-3">
+                <span>Secret Outlet — Relatório Estratégico de Performance</span>
+                <span class="flex items-center gap-2">
+                    <span>Navegue com:</span>
+                    <kbd class="px-1.5 py-0.5 rounded bg-parchment-100 text-stone-600 border border-parchment-300 font-mono">◀</kbd>
+                    <kbd class="px-1.5 py-0.5 rounded bg-parchment-100 text-stone-600 border border-parchment-300 font-mono">▶</kbd>
+                    <span class="text-stone-300">ou</span>
+                    <span class="text-stone-600 font-sans">Scroll / Clique</span>
+                </span>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 2: COMPARATIVO ANTES vs AGORA ==================== -->
+        <section class="slide" data-slide="2">
+            <div class="flex items-center justify-between text-xs font-mono text-stone-400">
+                <span class="tracking-widest uppercase">02 / BENCHMARKING OPERACIONAL</span>
+                <span>EVOLUÇÃO DOS INDICADORES: 13/OUT vs. 30/OUT</span>
+            </div>
+
+            <div class="my-auto py-2">
+                <div class="mb-4">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 tracking-tight">O Salto Estrutural dos Indicadores Macro</h2>
+                    <p class="text-xs text-stone-500 mt-1">Confronto direto após Customer Match carregado, campanha PMax de cobertura total e 23 promoções ativas no Merchant Center.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+                    <!-- Tabela de Alta Densidade (Clean Light UI) -->
+                    <div class="lg:col-span-8 light-card p-1 overflow-hidden">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-parchment-100/80 font-mono text-[11px] text-stone-500 uppercase tracking-wider border-b border-parchment-200">
+                                <tr>
+                                    <th class="py-3 px-4 font-semibold">Métrica Macro</th>
+                                    <th class="py-3 px-4 text-center font-semibold">Antes (13/10)</th>
+                                    <th class="py-3 px-4 text-center font-semibold text-stone-900">Agora (30/10)</th>
+                                    <th class="py-3 px-4 text-center font-semibold">Benchmark</th>
+                                    <th class="py-3 px-4 text-right font-semibold">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-parchment-200/60 font-mono text-xs">
+                                <tr class="hover:bg-parchment-50/50 transition">
+                                    <td class="py-3 px-4 font-sans font-medium text-stone-900">Merchant Excellence Score</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">82,8%</td>
+                                    <td class="py-3 px-4 text-center text-teal-700 font-bold text-sm">~95,4%</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">70,0%</td>
+                                    <td class="py-3 px-4 text-right"><span class="status-pill pass">+12,6 p.p. 🚀</span></td>
+                                </tr>
+                                <tr class="hover:bg-parchment-50/50 transition">
+                                    <td class="py-3 px-4 font-sans font-medium text-stone-900">Customer Match (Lista 1P)</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">Inativo 🔴</td>
+                                    <td class="py-3 px-4 text-center text-teal-700 font-bold">Ativo (365d)</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">Ativo</td>
+                                    <td class="py-3 px-4 text-right"><span class="status-pill pass">Bagy 1P ✅</span></td>
+                                </tr>
+                                <tr class="hover:bg-parchment-50/50 transition">
+                                    <td class="py-3 px-4 font-sans font-medium text-stone-900">Ofertas Segmentadas em Ads</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">89,7% 🔴</td>
+                                    <td class="py-3 px-4 text-center text-teal-700 font-bold">100,0%</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">&gt; 95,0%</td>
+                                    <td class="py-3 px-4 text-right"><span class="status-pill pass">PMax Ativa ✅</span></td>
+                                </tr>
+                                <tr class="hover:bg-parchment-50/50 transition">
+                                    <td class="py-3 px-4 font-sans font-medium text-stone-900">Promoções Ativas (Merchant Center)</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">0 🔴</td>
+                                    <td class="py-3 px-4 text-center text-purple-700 font-bold">23 regras</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">&ge; 5 regras</td>
+                                    <td class="py-3 px-4 text-right"><span class="status-pill purple">4,6x Meta ✅</span></td>
+                                </tr>
+                                <tr class="hover:bg-parchment-50/50 transition">
+                                    <td class="py-3 px-4 font-sans font-medium text-stone-900">Total de Ofertas Catalogadas</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">31.820</td>
+                                    <td class="py-3 px-4 text-center text-stone-900 font-bold">39.280</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">—</td>
+                                    <td class="py-3 px-4 text-right"><span class="status-pill info">+7.460 un</span></td>
+                                </tr>
+                                <tr class="hover:bg-parchment-50/50 transition">
+                                    <td class="py-3 px-4 font-sans font-medium text-stone-900">Taxa de Aprovação de Produtos</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">99,9%</td>
+                                    <td class="py-3 px-4 text-center text-teal-700 font-bold">99,93%</td>
+                                    <td class="py-3 px-4 text-center text-stone-500">&gt; 95,0%</td>
+                                    <td class="py-3 px-4 text-right"><span class="status-pill pass">0,07% Reprov.</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Callout Lateral de Inteligência -->
+                    <div class="lg:col-span-4 flex flex-col justify-between gap-3">
+                        <div class="light-card p-4 border-l-4 border-l-blue-600">
+                            <span class="text-[10px] font-mono text-blue-700 uppercase font-semibold">1P Loyalty Audience (Pilar 5)</span>
+                            <h4 class="text-sm font-bold text-stone-900 mt-1">Lista de Clientes Conectada</h4>
+                            <p class="text-xs text-stone-600 mt-1 leading-relaxed">
+                                <strong class="text-stone-800">[Compradores Bagy - Últimos 365 Dias - 30/10/26]</strong> já está ativa no Google Ads. Isso habilita lances automáticos de retenção e priorização de busca para clientes fiéis.
+                            </p>
+                        </div>
+                        <div class="light-card p-4 border-l-4 border-l-teal-600">
+                            <span class="text-[10px] font-mono text-teal-700 uppercase font-semibold">PMax de Arcalço Total (Pilar 3)</span>
+                            <h4 class="text-sm font-bold text-stone-900 mt-1">100% de Presença Comercial</h4>
+                            <p class="text-xs text-stone-600 mt-1 leading-relaxed">
+                                Zero produtos dormentes: todas as 39.280 peças ativas contam com lances contínuos em Search, Shopping, YouTube e Display.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-stone-400 font-mono border-t border-parchment-200 pt-3">
+                <span>Diagnóstico Comparativo de Métricas Gerais</span>
+                <span>Slide 2 / 6</span>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 3: O SALTO EM AGENTIC COMMERCE ==================== -->
+        <section class="slide" data-slide="3">
+            <div class="flex items-center justify-between text-xs font-mono text-stone-400">
+                <span class="tracking-widest uppercase">03 / DESCOBERTA AGENTIC (IA)</span>
+                <span>GOOGLE LENS, GEMINI & DEMAND GEN</span>
+            </div>
+
+            <div class="my-auto py-2">
+                <div class="mb-4">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 tracking-tight">A Revolução dos Atributos de Inteligência Artificial</h2>
+                    <p class="text-xs text-stone-500 mt-1">Gaps históricos que restringiam a exibição da loja nas experiências visuais e conversacionais do Google foram destravados.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
+                    <!-- Card 1: Highlights -->
+                    <div class="light-card p-4 border-t-4 border-t-teal-600">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-mono text-stone-400">product_highlight</span>
+                            <span class="status-pill pass text-[10px] py-0 px-2">100% OK</span>
+                        </div>
+                        <div class="text-2xl font-bold font-mono text-stone-900 mt-2">99,7%</div>
+                        <div class="text-[11px] text-stone-500 font-mono mt-0.5">Antes: <span class="line-through text-red-500">71,1%</span> (Meta: 85%)</div>
+                        <p class="text-xs text-stone-600 mt-2 border-t border-parchment-200 pt-2 leading-relaxed">
+                            3 a 4 bullets objetivos por produto alimentando respostas do Google Gemini e AI Overviews.
+                        </p>
+                    </div>
+
+                    <!-- Card 2: Lifestyle Image -->
+                    <div class="light-card p-4 border-t-4 border-t-teal-600">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-mono text-stone-400">lifestyle_image</span>
+                            <span class="status-pill pass text-[10px] py-0 px-2">SUPERADA</span>
+                        </div>
+                        <div class="text-2xl font-bold font-mono text-stone-900 mt-2">31,2%</div>
+                        <div class="text-[11px] text-stone-500 font-mono mt-0.5">Antes: <span class="line-through text-red-500">0,2%</span> (Meta: 30%)</div>
+                        <p class="text-xs text-stone-600 mt-2 border-t border-parchment-200 pt-2 leading-relaxed">
+                            <strong>9.288 itens</strong> com fotos ambientadas com modelos, ativando carrosséis ricos de estilo.
+                        </p>
+                    </div>
+
+                    <!-- Card 3: Video Links -->
+                    <div class="light-card p-4 border-t-4 border-t-blue-600">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-mono text-stone-400">video_link (GCS)</span>
+                            <span class="status-pill info text-[10px] py-0 px-2">ATIVADO</span>
+                        </div>
+                        <div class="text-2xl font-bold font-mono text-stone-900 mt-2">8.654</div>
+                        <div class="text-[11px] text-stone-500 font-mono mt-0.5">Antes: <span class="line-through text-red-500">0 SKUs</span> (Meta: Ativo)</div>
+                        <p class="text-xs text-stone-600 mt-2 border-t border-parchment-200 pt-2 leading-relaxed">
+                            Vídeos em alta definição no Cloud Storage qualificando anúncios em <strong>YouTube Shorts</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Card 4: Imagens 1500px -->
+                    <div class="light-card p-4 border-t-4 border-t-amber-500">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[11px] font-mono text-stone-400">Resolução 1500px</span>
+                            <span class="status-pill amber text-[10px] py-0 px-2">SALTO</span>
+                        </div>
+                        <div class="text-2xl font-bold font-mono text-stone-900 mt-2">31,8%</div>
+                        <div class="text-[11px] text-stone-500 font-mono mt-0.5">Antes: <span class="line-through text-red-500">0,01%</span> (Meta: 45%)</div>
+                        <p class="text-xs text-stone-600 mt-2 border-t border-parchment-200 pt-2 leading-relaxed">
+                            <strong>9.428 variações</strong> com fotos de alta densidade no GCS, liberando zoom nítido no Google Shopping.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Banner Informativo -->
+                <div class="light-card p-3.5 flex items-center justify-between text-xs text-stone-600 bg-teal-50/50 border-teal-200">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                        <span>Produtos que combinam <strong>Vídeo + Lifestyle + Customer Match</strong> atingem prioridade máxima no algoritmo de leilão do Google.</span>
+                    </div>
+                    <span class="font-mono text-teal-800 text-[11px] font-semibold">Pipeline SFTP 100% Automático</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-stone-400 font-mono border-t border-parchment-200 pt-3">
+                <span>Atributos Críticos de Descoberta Agentic</span>
+                <span>Slide 3 / 6</span>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 4: OS 6 PILARES ESTATÍSTICOS ==================== -->
+        <section class="slide" data-slide="4">
+            <div class="flex items-center justify-between text-xs font-mono text-stone-400">
+                <span class="tracking-widest uppercase">04 / ARQUITETURA DE PILARES</span>
+                <span>MATURIDADE OPERACIONAL RECALCULADA</span>
+            </div>
+
+            <div class="my-auto py-2">
+                <div class="mb-4">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 tracking-tight">Performance nos 6 Pilares Operacionais</h2>
+                    <p class="text-xs text-stone-500 mt-1">Evolução expressiva em todos os pilares essenciais de e-commerce após as implementações de hoje.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+                    <!-- Radar Chart Container -->
+                    <div class="lg:col-span-5 light-card p-3 flex flex-col items-center justify-center h-64">
+                        <canvas id="pillarsRadarChart" class="max-h-56"></canvas>
+                    </div>
+
+                    <!-- Breakdown dos 6 Pilares (Refactoring UI: 2 colunas com hierarquia rígida) -->
+                    <div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs">
+                        <div class="light-card p-3 border-l-4 border-l-teal-600">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="font-bold text-stone-900 text-xs">1. Maximize Total Offers</span>
+                                <span class="font-mono text-teal-700 font-bold">75%</span>
+                            </div>
+                            <p class="text-[11px] text-stone-600 leading-normal">Free Listings e Market Insights ativos. LIA inativo (sem lojas físicas).</p>
+                        </div>
+
+                        <div class="light-card p-3 border-l-4 border-l-teal-600">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="font-bold text-stone-900 text-xs">2. Increase Approval Rate</span>
+                                <span class="font-mono text-teal-700 font-bold">95%</span>
+                            </div>
+                            <p class="text-[11px] text-stone-600 leading-normal">Reprovações em 0,07%. Schema.org e AIU 100% validados.</p>
+                        </div>
+
+                        <div class="light-card p-3 border-l-4 border-l-teal-600">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="font-bold text-stone-900 text-xs">3. Increase Targeted Products</span>
+                                <span class="font-mono text-teal-700 font-bold">95% 🚀</span>
+                            </div>
+                            <p class="text-[11px] text-stone-600 leading-normal">PMax cobrindo 100% do catálogo. Custom labels em 99,7%.</p>
+                        </div>
+
+                        <div class="light-card p-3 border-l-4 border-l-teal-600">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="font-bold text-stone-900 text-xs">4. Agentic AI Discovery</span>
+                                <span class="font-mono text-teal-700 font-bold">92%</span>
+                            </div>
+                            <p class="text-[11px] text-stone-600 leading-normal">Highlights 99,7%, Lifestyle 31,2% e descrições ricas em 99,8%.</p>
+                        </div>
+
+                        <div class="light-card p-3 border-l-4 border-l-teal-600">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="font-bold text-stone-900 text-xs">5. Boost CTR & Annotations</span>
+                                <span class="font-mono text-teal-700 font-bold">90% 🚀</span>
+                            </div>
+                            <p class="text-[11px] text-stone-600 leading-normal">Customer Match ativo + 23 Promoções no GMC. Frete e devolução 100% OK.</p>
+                        </div>
+
+                        <div class="light-card p-3 border-l-4 border-l-blue-600">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="font-bold text-stone-900 text-xs">6. Demand Gen & Checkout</span>
+                                <span class="font-mono text-blue-700 font-bold">75%</span>
+                            </div>
+                            <p class="text-[11px] text-stone-600 leading-normal">Vídeos GCS ativos. Checkout on Merchant é o único gap restante.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-stone-400 font-mono border-t border-parchment-200 pt-3">
+                <span>Auditoria Parametrizada por Pilar</span>
+                <span>Slide 4 / 6</span>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 5: ROADMAP DE EXPANSÃO (95%+) ==================== -->
+        <section class="slide" data-slide="5">
+            <div class="flex items-center justify-between text-xs font-mono text-stone-400">
+                <span class="step-index">05. STRATEGIC ROADMAP</span>
+                <span>ÚLTIMO GAP PARA FECHAR EM 98%+</span>
+            </div>
+
+            <div class="my-auto py-2">
+                <div class="mb-4">
+                    <h2 class="text-2xl md:text-3xl font-bold text-stone-900 tracking-tight">O Último Passo para o Topo Absoluto</h2>
+                    <p class="text-xs text-stone-500 mt-1">Com Customer Match, PMax e Promoções ativas, resta apenas um único ajuste de conversão.</p>
+                </div>
+
+                <!-- Único Card em Destaque Especial -->
+                <div class="light-card p-6 border-l-4 border-l-red-500 mb-4 bg-red-50/20">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-mono text-red-600 font-bold uppercase tracking-wider">ÚLTIMA PRIORIDADE ALTA • CONVERSÃO DIRETA</span>
+                        <span class="text-xs font-mono text-teal-700 font-semibold bg-teal-50 px-2 py-0.5 rounded border border-teal-200">+3,2 p.p. Rumo aos 98%</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-stone-900">Ativar Checkout on Merchant (`checkout_link_template`)</h4>
+                    <p class="text-xs text-stone-600 mt-2 leading-relaxed max-w-3xl">
+                        Permitir que o cliente compre em 1 clique a partir dos anúncios do Google, caindo direto na tela de finalização de compra com o produto e tamanho pré-selecionados, reduzindo atritos de navegação na loja.
+                    </p>
+                    <div class="mt-3 p-2.5 rounded-lg bg-white border border-parchment-200 font-mono text-xs text-blue-700">
+                        Template Sugerido: https://www.secretoutlet.com.br/carrinho/adicionar?sku={id}&quantidade=1
+                    </div>
+                </div>
+
+                <!-- 3 Conquistas Chave Recentes -->
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="light-card p-3 border-l-4 border-l-teal-600 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono text-teal-700 uppercase font-semibold">Concluído</span>
+                            <div class="text-xs font-bold text-stone-900">Customer Match 1P</div>
+                            <div class="text-[10px] text-stone-500 font-mono">Compradores 365 Dias</div>
+                        </div>
+                        <span class="status-pill pass text-[10px]">Ativo</span>
+                    </div>
+
+                    <div class="light-card p-3 border-l-4 border-l-teal-600 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono text-teal-700 uppercase font-semibold">Concluído</span>
+                            <div class="text-xs font-bold text-stone-900">PMax Catch-All</div>
+                            <div class="text-[10px] text-stone-500 font-mono">100% Catálogo Coberto</div>
+                        </div>
+                        <span class="status-pill pass text-[10px]">Ativo</span>
+                    </div>
+
+                    <div class="light-card p-3 border-l-4 border-l-purple-600 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-mono text-purple-700 uppercase font-semibold">Concluído</span>
+                            <div class="text-xs font-bold text-stone-900">23 Promoções GMC</div>
+                            <div class="text-[10px] text-stone-500 font-mono">Selos no Shopping</div>
+                        </div>
+                        <span class="status-pill purple text-[10px]">Ativo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-stone-400 font-mono border-t border-parchment-200 pt-3">
+                <span>Roteiro Final de Otimização</span>
+                <span>Slide 5 / 6</span>
+            </div>
+        </section>
+
+        <!-- ==================== SLIDE 6: CONCLUSÃO EXECUTIVA ==================== -->
+        <section class="slide" data-slide="6">
+            <div class="flex items-center justify-between text-xs font-mono text-stone-400">
+                <span class="step-index">06. EXECUTIVE SUMMARY</span>
+                <span>POSICIONAMENTO COMPETITIVO</span>
+            </div>
+
+            <div class="flex flex-col justify-center items-center text-center my-auto py-2 max-w-3xl mx-auto">
+                <div class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center text-teal-700 mb-4 shadow-sm">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+
+                <h2 class="text-3xl md:text-4xl font-extrabold text-stone-900 tracking-tight leading-tight mb-3">
+                    A Secret Outlet no Topo do E-commerce Nacional
+                </h2>
+                <p class="text-sm text-stone-600 font-light leading-relaxed mb-6">
+                    Com Customer Match, PMax total e 23 promoções ativas, a <strong class="text-stone-900 font-semibold">Secret Outlet</strong> atinge um Merchant Excellence Score de <strong class="text-teal-700 font-mono font-semibold">~95,4%</strong> (muito acima do benchmark do Google de <span class="font-mono text-stone-500">70,0%</span>), estabelecendo liderança tecnológica definitiva para as novas experiências de IA no Google Shopping.
+                </p>
+
+                <!-- Matriz de Conquistas -->
+                <div class="grid grid-cols-3 gap-3 w-full text-left font-mono text-xs mb-6">
+                    <div class="light-card p-3.5">
+                        <div class="text-[10px] text-stone-400 uppercase">Fidelidade 1P</div>
+                        <div class="text-xs font-bold text-teal-700 mt-1">Customer Match</div>
+                        <div class="text-[10px] text-stone-500 mt-0.5">Compradores 365d Ativos</div>
+                    </div>
+                    <div class="light-card p-3.5">
+                        <div class="text-[10px] text-stone-400 uppercase">Campanhas Ads</div>
+                        <div class="text-xs font-bold text-blue-700 mt-1">100% de Cobertura</div>
+                        <div class="text-[10px] text-stone-500 mt-0.5">PMax Catch-All Operando</div>
+                    </div>
+                    <div class="light-card p-3.5">
+                        <div class="text-[10px] text-stone-400 uppercase">Promoções GMC</div>
+                        <div class="text-xs font-bold text-purple-700 mt-1">23 Regras Ativas</div>
+                        <div class="text-[10px] text-stone-500 mt-0.5">Selos de Oferta no Shopping</div>
+                    </div>
+                </div>
+
+                <div class="text-[11px] font-mono text-stone-500">
+                    Secret Outlet &bull; Auditoria automatizada pela Skill <span class="text-stone-800 font-semibold">merchant-excellence-audit</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between text-xs text-stone-400 font-mono border-t border-parchment-200 pt-3">
+                <span>Secret Outlet • Inteligência de Mídia & Catálogo</span>
+                <span>Slide 6 / 6</span>
+            </div>
+        </section>
+
+        <!-- PERSISTENT FOOTER & COMPREHENSIVE CONTROLS (Mouse & Keyboard) -->
+        <footer class="w-full h-14 border-t border-parchment-200 px-8 flex items-center justify-between z-30 bg-white/90 backdrop-blur-md">
+            <!-- Left: Navigation buttons with hover & active states -->
+            <div class="flex items-center gap-2.5">
+                <button id="prevBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-parchment-100 hover:bg-parchment-200 text-stone-700 border border-parchment-300 text-xs font-mono font-medium">
+                    <span>◀</span> <span>Anterior</span>
+                </button>
+                <button id="nextBtn" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-stone-900 hover:bg-stone-800 text-white text-xs font-mono font-medium shadow-sm">
+                    <span>Próximo</span> <span>▶</span>
+                </button>
+                <button id="playPauseBtn" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-parchment-100 hover:bg-parchment-200 text-stone-600 border border-parchment-300 text-xs font-mono" title="Apresentação automática">
+                    <span id="playIcon">▶</span> <span class="text-[11px]" id="playText">Auto</span>
+                </button>
+            </div>
+
+            <!-- Center: Mouse Wheel & Swipe Hint -->
+            <div class="hidden sm:flex items-center gap-2 text-[11px] font-mono text-stone-400">
+                <span class="inline-block w-1.5 h-1.5 rounded-full bg-stone-400"></span>
+                <span>Roda do Mouse ou Teclado para navegar</span>
+            </div>
+
+            <!-- Right: Interactive Dots & Slide Counter -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5" id="dotsContainer"></div>
+                <span id="slideIndicator" class="font-mono text-xs text-stone-600 font-bold pl-2">01 / 06</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- INTERACTIVE CONTROLLER SCRIPT (GSAP, Mouse Wheel, Drag, Keyboard) -->
+    <script>
+        (function() {
+            let currentSlide = 1;
+            const totalSlides = 6;
+            const slides = document.querySelectorAll('.slide');
+            const indicator = document.getElementById('slideIndicator');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playIcon = document.getElementById('playIcon');
+            const playText = document.getElementById('playText');
+            const progressBar = document.getElementById('topProgressBar');
+            const dotsContainer = document.getElementById('dotsContainer');
+            const thumbBtns = document.querySelectorAll('.thumb-nav-btn');
+            const deck = document.getElementById('deckContainer');
+
+            let autoPlayInterval = null;
+            let isAutoPlaying = false;
+
+            // Build indicator dots with direct click handlers
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = `w-2 h-2 rounded-full transition-all duration-200 ${i === 1 ? 'bg-teal-600 w-5' : 'bg-parchment-300 hover:bg-parchment-400'}`;
+                dot.id = `dot-${i}`;
+                dot.title = `Ir para slide ${i}`;
+                dot.addEventListener('click', () => updateSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            // Top Thumbnails Click Handlers
+            thumbBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const target = parseInt(btn.getAttribute('data-nav-slide'));
+                    if (target) updateSlide(target);
+                });
+            });
+
+            function updateSlide(target, direction = 'next') {
+                if (target < 1) target = 1;
+                if (target > totalSlides) target = totalSlides;
+                if (target === currentSlide) return;
+
+                const prevIndex = currentSlide;
+                currentSlide = target;
+
+                // Animate Out Previous Slide, In New Slide via GSAP
+                slides.forEach((slide, idx) => {
+                    const slideNum = idx + 1;
+                    if (slideNum === currentSlide) {
+                        slide.classList.add('active');
+                        gsap.fromTo(slide, 
+                            { opacity: 0, y: direction === 'next' ? 16 : -16 },
+                            { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
+                        );
+                    } else if (slideNum === prevIndex) {
+                        slide.classList.remove('active');
+                        gsap.to(slide, { opacity: 0, y: direction === 'next' ? -16 : 16, duration: 0.25, ease: "power2.in" });
+                    } else {
+                        slide.classList.remove('active');
+                    }
+
+                    // Update Dots
+                    const dot = document.getElementById(`dot-${slideNum}`);
+                    if (dot) {
+                        if (slideNum === currentSlide) {
+                            dot.className = 'w-5 h-2 rounded-full bg-teal-600 transition-all duration-200';
+                        } else {
+                            dot.className = 'w-2 h-2 rounded-full bg-parchment-300 hover:bg-parchment-400 transition-all duration-200';
+                        }
+                    }
+                });
+
+                // Update Top Thumbnail Highlighting
+                thumbBtns.forEach(btn => {
+                    const slideNum = parseInt(btn.getAttribute('data-nav-slide'));
+                    if (slideNum === currentSlide) {
+                        btn.classList.add('active', 'text-teal-700', 'font-bold');
+                        btn.classList.remove('text-stone-500');
+                    } else {
+                        btn.classList.remove('active', 'text-teal-700', 'font-bold');
+                        btn.classList.add('text-stone-500');
+                    }
+                });
+
+                // Update Labels & Progress
+                indicator.textContent = `0${currentSlide} / 0${totalSlides}`;
+                progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
+            }
+
+            // Button controls
+            prevBtn.addEventListener('click', () => updateSlide(currentSlide - 1, 'prev'));
+            nextBtn.addEventListener('click', () => updateSlide(currentSlide + 1, 'next'));
+
+            // Auto Play Toggle
+            function toggleAutoPlay() {
+                if (isAutoPlaying) {
+                    clearInterval(autoPlayInterval);
+                    isAutoPlaying = false;
+                    playIcon.textContent = '▶';
+                    playText.textContent = 'Auto';
+                } else {
+                    isAutoPlaying = true;
+                    playIcon.textContent = '⏸';
+                    playText.textContent = 'Pausar';
+                    autoPlayInterval = setInterval(() => {
+                        let next = currentSlide + 1;
+                        if (next > totalSlides) next = 1;
+                        updateSlide(next, 'next');
+                    }, 6000);
+                }
+            }
+            playPauseBtn.addEventListener('click', toggleAutoPlay);
+
+            // Comprehensive Keyboard Navigation
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'Enter') {
+                    e.preventDefault();
+                    updateSlide(currentSlide + 1, 'next');
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'Backspace') {
+                    e.preventDefault();
+                    updateSlide(currentSlide - 1, 'prev');
+                } else if (e.key === 'Home') {
+                    updateSlide(1, 'prev');
+                } else if (e.key === 'End') {
+                    updateSlide(totalSlides, 'next');
+                } else if (e.key >= '1' && e.key <= '6') {
+                    updateSlide(parseInt(e.key), parseInt(e.key) > currentSlide ? 'next' : 'prev');
+                }
+            });
+
+            // Smooth Mouse Wheel Navigation with Debounce
+            let wheelDebounce = false;
+            deck.addEventListener('wheel', (e) => {
+                if (wheelDebounce) return;
+                if (Math.abs(e.deltaY) > 30) {
+                    wheelDebounce = true;
+                    if (e.deltaY > 0) {
+                        updateSlide(currentSlide + 1, 'next');
+                    } else {
+                        updateSlide(currentSlide - 1, 'prev');
+                    }
+                    setTimeout(() => { wheelDebounce = false; }, 600);
+                }
+            }, { passive: true });
+
+            // Touch / Mouse Drag Swipe Gestures
+            let startX = 0;
+            let startY = 0;
+            deck.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                startY = e.clientY;
+            });
+            deck.addEventListener('mouseup', (e) => {
+                const diffX = e.clientX - startX;
+                const diffY = e.clientY - startY;
+                if (Math.abs(diffX) > 60 && Math.abs(diffY) < 100) {
+                    if (diffX < 0) {
+                        updateSlide(currentSlide + 1, 'next');
+                    } else {
+                        updateSlide(currentSlide - 1, 'prev');
+                    }
+                }
+            });
+
+            // Initialize Light-Themed Chart.js Radar Chart
+            document.addEventListener('DOMContentLoaded', () => {
+                const ctx = document.getElementById('pillarsRadarChart');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: [
+                                '1. Total Offers',
+                                '2. Approval Rate',
+                                '3. Targeted (Ads)',
+                                '4. Agentic AI',
+                                '5. CTR & Fidelidade',
+                                '6. Demand Gen'
+                            ],
+                            datasets: [
+                                {
+                                    label: 'Secret Outlet (Atualizado)',
+                                    data: [75, 95, 95, 92, 90, 75],
+                                    backgroundColor: 'rgba(13, 148, 136, 0.15)',
+                                    borderColor: '#0D9488',
+                                    pointBackgroundColor: '#0D9488',
+                                    pointBorderColor: '#FFFFFF',
+                                    borderWidth: 2,
+                                    pointRadius: 4
+                                },
+                                {
+                                    label: 'Benchmark Google',
+                                    data: [70, 70, 70, 70, 70, 70],
+                                    backgroundColor: 'rgba(37, 99, 235, 0.05)',
+                                    borderColor: 'rgba(37, 99, 235, 0.45)',
+                                    borderDash: [3, 3],
+                                    pointBackgroundColor: '#2563EB',
+                                    pointBorderColor: '#FFFFFF',
+                                    borderWidth: 1.5,
+                                    pointRadius: 2.5
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                r: {
+                                    angleLines: { color: 'rgba(0, 0, 0, 0.08)' },
+                                    grid: { color: 'rgba(0, 0, 0, 0.06)' },
+                                    pointLabels: {
+                                        color: '#57534E',
+                                        font: { family: 'Plus Jakarta Sans', size: 9.5, weight: '600' }
+                                    },
+                                    ticks: {
+                                        display: false,
+                                        stepSize: 20,
+                                        max: 100,
+                                        min: 0
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        color: '#1C1917',
+                                        font: { family: 'Plus Jakarta Sans', size: 10, weight: '500' },
+                                        boxWidth: 10,
+                                        padding: 8
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
